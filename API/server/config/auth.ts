@@ -1,4 +1,3 @@
-
 import jwt = require("jsonwebtoken");
 
 import Config from '../config/configs';

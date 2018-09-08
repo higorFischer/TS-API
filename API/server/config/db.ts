@@ -7,7 +7,7 @@ class Database {
 	constructor() { }
 
 	public createConnection() {
-		mongoose.connect(this.DB_URI);
+		mongoose.connect(this.DB_URI, { useMongoClient: true});
 		this.logger(this.DB_URI);
 	}
 

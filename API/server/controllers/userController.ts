@@ -1,6 +1,6 @@
 import UserRepository from '../repositories/userRepository';
-import { BaseController } from '../base/controller/baseController';
-import { IUser } from '../base/interfaces/IUser';
+import { BaseController } from '../abstract/controller/baseController';
+import { IUser } from '../abstract/interfaces/IUser';
 
 class UserController extends BaseController<IUser> {
 	

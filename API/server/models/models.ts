@@ -1,7 +1,7 @@
 import * as Mongoose from "mongoose";
 import UserSchema from "../schemas/userSchema";
-import { IModels } from '../base/interfaces/IModels';
-import { IUser } from "../base/interfaces/IUser";
+import { IModels } from '../abstract/interfaces/IModels';
+import { IUser } from "../abstract/interfaces/IUser";
 
 class Models implements IModels{
     public User = Mongoose.model<IUser>("User", UserSchema);

@@ -3,7 +3,6 @@ import { Request, Response}  from "express"
 import { IBaseController } from '../interfaces/IBaseController';
 import { IBaseRepository } from '../interfaces/IBaseRepository';
 import { Document } from 'mongoose';
-import { BaseRepository } from '../repository/baseReposytory';
 
 const sendReponse = function (res, statusCode, data) {
 	res.status(statusCode).json({ 'result': data })

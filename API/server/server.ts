@@ -3,7 +3,7 @@ import App from "./app";
 let port = process.env.PORT || '8000';
 
 App.app.listen(port, function () {
-	console.log(`server running in" + ${port}`);
+	console.log(`server running in Port ${port}`);
 });
 
 process.once('SIGUSR2', () => App.closedataBaseConnection('nodemon restart', () => process.kill(process.pid, 'SIGUSR2')));

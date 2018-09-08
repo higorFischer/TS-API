@@ -1,6 +1,6 @@
-import { BaseRepository } from '../base/repository/baseReposytory';
+import { BaseRepository } from '../abstract/repository/baseReposytory';
 import Models from '../models/models';
-import { IUser } from '../base/interfaces/IUser';
+import { IUser } from '../abstract/interfaces/IUser';
 
 class UserRepository extends BaseRepository<IUser>{
 

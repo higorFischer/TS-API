@@ -6,7 +6,7 @@ class Database {
         this.DB_URI = 'mongodb://127.0.0.1:27017/tsapi';
     }
     createConnection() {
-        mongoose.connect(this.DB_URI);
+        mongoose.connect(this.DB_URI, { useMongoClient: true });
         this.logger(this.DB_URI);
     }
     logger(uri) {

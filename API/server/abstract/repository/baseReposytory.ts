@@ -1,5 +1,5 @@
 import { IBaseRepository } from '../interfaces/IBaseRepository';
-import { Schema, Model, Document, DocumentQuery } from 'mongoose';
+import { Model, Document, DocumentQuery } from 'mongoose';
 
 export class BaseRepository<T extends Document> implements IBaseRepository<T> {
 	
