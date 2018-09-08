@@ -7,8 +7,8 @@ import uploads from "./config/uploads";
 
 //Route
 import UserController from './controllers/userController';
-import { IBaseController } from "./abstract/interfaces/IBaseController";
-import { IUser } from "./abstract/interfaces/IUser";
+import { IBaseController } from "./interfaces/IBaseController";
+import { IUser } from "./interfaces/IUser";
 
 class App {
 
