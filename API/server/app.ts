@@ -4,6 +4,7 @@ import * as bodyParser from "body-parser";
 import DataBase from './config/db';
 import * as cors from "cors";
 import uploads from "./config/uploads";
+import Auth from "./config/auth";
 
 //Route
 import UserController from './controllers/userController';
@@ -55,6 +56,7 @@ class App {
 	public routes() {
 
 		this.app.route("/").get((req, res) => { res.send({ 'result': 'version 0.0.2' }) });
+		this.app.use(Auth.validate);
 		this.addRoutes<IUser>(UserController, "users");
 
 	}
