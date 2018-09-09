@@ -1,10 +1,11 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-const Mongoose = require("mongoose");
+const mongoose = require("mongoose");
 const userSchema_1 = require("../schemas/userSchema");
 class Models {
     constructor() {
-        this.User = Mongoose.model("User", userSchema_1.default);
+        this.User = mongoose.model("User", userSchema_1.UserSchema);
+        console.log("Creating New Model");
     }
 }
 exports.default = new Models;

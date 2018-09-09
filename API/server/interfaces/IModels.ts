@@ -1,7 +1,8 @@
-import { Model, Document } from "mongoose";
+import { IUser } from "./IUser";
+import { Model } from "mongoose";
 
 export interface IModels {
 
-	User: Model<Document>;
+	User: Model<IUser>;
 
 }

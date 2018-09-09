@@ -10,6 +10,7 @@ import Auth from "./config/auth";
 import UserController from './controllers/userController';
 import { IBaseController } from "./interfaces/IBaseController";
 import { IUser } from "./interfaces/IUser";
+import { UserSchema } from "./schemas/userSchema";
 
 class App {
 
@@ -39,13 +40,9 @@ class App {
 		this.app.use(cors(options));
 	}
 
-	public dataBaseConnection() {
-		this.database.createConnection();
-	}
+	public dataBaseConnection() { this.database.createConnection(); }
 
-	public closedataBaseConnection(message, callback) {
-		this.database.closeConnection(message, () => callback());
-	}
+	public closedataBaseConnection(message, callback) { this.database.closeConnection(message, () => callback());}
 
 	public middleware() {
 		this.app.use(morgan("dev"));
@@ -55,8 +52,8 @@ class App {
 
 	public routes() {
 
-		this.app.route("/").get((req, res) => { res.send({ 'result': 'version 0.0.2' }) });
-		this.app.use(Auth.validate);
+		this.app.route("/").get((req, res) => { res.send({ 'result': 'version 0.0.1' }) });
+		// this.app.use(Auth.validate);
 		this.addRoutes<IUser>(UserController, "users");
 
 	}
@@ -68,7 +65,6 @@ class App {
 		this.app.route(`/api/v1/${url}/:id`).put(Controller.update.bind(Controller));
 		this.app.route(`/api/v1/${url}/:id`).delete(Controller.delete.bind(Controller));
 	}
-
 
 }
 

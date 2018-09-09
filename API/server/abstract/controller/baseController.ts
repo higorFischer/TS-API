@@ -12,15 +12,16 @@ export class BaseController<T extends Document> implements IBaseController<T>{
 	
 	public Repository: IBaseRepository<T>
 
-	constructor(repository: IBaseRepository<T>){
-		this.Repository = repository;
+	constructor(repository: IBaseRepository<T>){ 
+		console.log("Created New Controller....");
+		this.Repository = repository; 
 	}
-
+	
 	public get(req: Request, res: Response) {
 		this.Repository
 			.getAll()
 			.then(user => sendReponse(res, httpStatus.OK, user))
-			.catch(err => console.error.bind(console, `Error ${err}`))
+			.catch(err => sendReponse(res, httpStatus.INTERNAL_SERVER_ERROR, err))
 	}
 
 	public getByID(req: Request, res: Response) {
@@ -32,14 +33,14 @@ export class BaseController<T extends Document> implements IBaseController<T>{
 			this.Repository
 				.getById(req.params.id)
 				.then(programs => sendReponse(res, httpStatus.OK, programs))
-				.catch(err => console.error.bind(console, `Error ${err}`));
+				.catch(err =>  sendReponse(res, httpStatus.INTERNAL_SERVER_ERROR, err));
 	}
 
 	public create(req: Request, res: Response) {
 		this.Repository
 			.create(req.body)
 			.then(menus => sendReponse(res, httpStatus.CREATED, menus))
-			.catch(err => console.error.bind(console, `Error ${err}`))
+			.catch(err => sendReponse(res, httpStatus.INTERNAL_SERVER_ERROR, err))
 	}
 
 	public update(req: Request, res: Response) {
@@ -51,7 +52,7 @@ export class BaseController<T extends Document> implements IBaseController<T>{
 		this.Repository
 			.update(_id, req.body)
 			.then(user => sendReponse(res, httpStatus.OK, user))
-			.catch(err => console.error.bind(console, `Error ${err}`));
+			.catch(err =>  sendReponse(res, httpStatus.INTERNAL_SERVER_ERROR, err));
 
 	}
 
@@ -63,6 +64,6 @@ export class BaseController<T extends Document> implements IBaseController<T>{
 		this.Repository
 			.delete(req.params.id)
 			.then(user => sendReponse(res, httpStatus.OK, `Deleted with success!`))
-			.catch(err => console.error.bind(console, `Error ${err}`));
+			.catch(err =>  sendReponse(res, httpStatus.INTERNAL_SERVER_ERROR, err));
 	}
 }

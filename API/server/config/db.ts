@@ -4,9 +4,13 @@ class Database {
 	private DB_URI = 'mongodb://127.0.0.1:27017/tsapi';
 	private DB_CONNECTION;
 
+	public get Connection(): mongoose.Connection{
+		return this.DB_CONNECTION;
+	}
+
 	constructor() { }
 
-	public createConnection() {
+	public createConnection(){
 		mongoose.connect(this.DB_URI, { useMongoClient: true});
 		this.logger(this.DB_URI);
 	}

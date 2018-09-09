@@ -4,9 +4,7 @@ import { IUser } from '../interfaces/IUser';
 
 class UserController extends BaseController<IUser> {
 	
-	constructor() {
-		super(UserRepository); 
-	}
+	constructor() { super(UserRepository); }
 	
 }
 
