@@ -6,10 +6,7 @@ export class BaseRepository<T extends Document> implements IBaseRepository<T> {
 	
 	public model: Model<T>;
 
-	constructor(model: Model<T>) { 
-		console.log("Created New Repository...")
-		this.model = model; 
-	}
+	constructor(model: Model<T>) { this.model = model; }
 
 	public getAll(): DocumentQuery<Array<T>, T> { return this.model.find({}); }
 

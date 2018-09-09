@@ -12,10 +12,7 @@ export class BaseController<T extends Document> implements IBaseController<T>{
 	
 	public Repository: IBaseRepository<T>
 
-	constructor(repository: IBaseRepository<T>){ 
-		console.log("Created New Controller....");
-		this.Repository = repository; 
-	}
+	constructor(repository: IBaseRepository<T>){ this.Repository = repository; }
 	
 	public get(req: Request, res: Response) {
 		this.Repository
