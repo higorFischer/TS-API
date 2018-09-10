@@ -6,7 +6,7 @@ export var UserSchema = new Schema({
 		required: true,
 		uppercase: true,
 		minlength: 3,
-		maxlength: 200
+		maxlength: 200,
 	},
 	birth: { 
 		type: Date,
@@ -19,7 +19,7 @@ export var UserSchema = new Schema({
 	password: { 
 		type: String,
 		required: true,
-		minlength: 8
+		minlength: 8,
 	},
 	createdAt: Date
 });

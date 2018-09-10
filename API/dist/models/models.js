@@ -5,7 +5,6 @@ const userSchema_1 = require("../schemas/userSchema");
 class Models {
     constructor() {
         this.User = mongoose.model("User", userSchema_1.UserSchema);
-        console.log("Creating New Model");
     }
 }
 exports.default = new Models;

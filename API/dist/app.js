@@ -5,6 +5,7 @@ const morgan = require("morgan");
 const bodyParser = require("body-parser");
 const db_1 = require("./config/db");
 const cors = require("cors");
+const auth_1 = require("./config/auth");
 //Route
 const userController_1 = require("./controllers/userController");
 class App {
@@ -34,9 +35,16 @@ class App {
         this.app.use(bodyParser.urlencoded({ extended: false }));
     }
     routes() {
-        this.app.route("/").get((req, res) => { res.send({ 'result': 'version 0.0.1' }); });
-        // this.app.use(Auth.validate);
+        this.createAuthRoute();
+        this.app.use(auth_1.default.validate);
+        this.addCustomRoutes();
+    }
+    addCustomRoutes() {
         this.addRoutes(userController_1.default, "users");
+    }
+    createAuthRoute() {
+        this.app.route("/api/v1/login").post(userController_1.default.validateUser.bind(userController_1.default));
+        this.app.route("/api/v1/register").post(userController_1.default.create.bind(userController_1.default));
     }
     addRoutes(Controller, url) {
         this.app.route(`/api/v1/${url}`).get(Controller.get.bind(Controller));

@@ -1,4 +1,5 @@
 import * as httpStatus from 'http-status';
+
 import { Request, Response}  from "express"
 import { IBaseController } from '../../interfaces/IBaseController';
 import { IBaseRepository } from '../../interfaces/IBaseRepository';

@@ -1,8 +1,21 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
+const httpStatus = require("http-status");
 const userRepository_1 = require("../repositories/userRepository");
 const baseController_1 = require("../abstract/controller/baseController");
+const jwt = require("jsonwebtoken");
+const configs_1 = require("../config/configs");
+const sendReponse = function (res, statusCode, data) {
+    res.status(statusCode).json({ 'result': data });
+};
 class UserController extends baseController_1.BaseController {
     constructor() { super(userRepository_1.default); }
+    validateUser(req, res) {
+        userRepository_1.default
+            .getValidUser(req.body)
+            .then(user => sendReponse(res, httpStatus.OK, this.jwtSign({ email: user.email })))
+            .catch(err => sendReponse(res, httpStatus.INTERNAL_SERVER_ERROR, err));
+    }
+    jwtSign(data) { return jwt.sign(data, configs_1.default.secret, { expiresIn: 86400 }); }
 }
 exports.default = new UserController();

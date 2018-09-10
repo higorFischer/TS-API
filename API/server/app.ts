@@ -10,7 +10,6 @@ import Auth from "./config/auth";
 import UserController from './controllers/userController';
 import { IBaseController } from "./interfaces/IBaseController";
 import { IUser } from "./interfaces/IUser";
-import { UserSchema } from "./schemas/userSchema";
 
 class App {
 
@@ -51,15 +50,22 @@ class App {
 	}
 
 	public routes() {
-
-		this.app.route("/").get((req, res) => { res.send({ 'result': 'version 0.0.1' }) });
-		// this.app.use(Auth.validate);
+		this.createAuthRoute();
+		this.app.use(Auth.validate);
+		this.addCustomRoutes();
+	}
+	
+	private addCustomRoutes(){
 		this.addRoutes<IUser>(UserController, "users");
+	}
 
+	private createAuthRoute(){
+		this.app.route("/api/v1/login").post(UserController.validateUser.bind(UserController));
+		this.app.route("/api/v1/register").post(UserController.create.bind(UserController));
 	}
 
 	private addRoutes<T>(Controller: IBaseController<any>, url: string){
-		this.app.route(`/api/v1/${url}`).get(Controller.get.bind(Controller));
+		this.app.route(`/api/v1/${url}`).get(Controller.get.bind(Controller), );
 		this.app.route(`/api/v1/${url}/:id`).get(Controller.getByID.bind(Controller));
 		this.app.route(`/api/v1/${url}`).post(Controller.create.bind(Controller));
 		this.app.route(`/api/v1/${url}/:id`).put(Controller.update.bind(Controller));
