@@ -1,5 +1,5 @@
 import { BaseRepository } from '../abstract/repository/baseReposytory';
-import Models from '../models/models';
+import Models from '../config/models';
 import jwt = require("jwt-simple");
 
 import { IUser } from '../interfaces/IUser';

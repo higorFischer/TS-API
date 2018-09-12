@@ -1,4 +1,4 @@
-import { IModels } from '../interfaces/IModels';
+import { IModels } from '../abstract/interfaces/IModels';
 import { IUser } from "../interfaces/IUser";
 import { Model } from 'mongoose';
 import * as mongoose from 'mongoose';

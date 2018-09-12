@@ -23,6 +23,7 @@ export var UserSchema = new Schema({
 	},
 	createdAt: Date
 });
+
 UserSchema.pre("save", function(next) {
 	if(!this.createdAt)
 		this.createdAt = new Date();
