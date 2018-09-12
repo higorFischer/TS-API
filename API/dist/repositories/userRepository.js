@@ -9,5 +9,12 @@ class UserRepository extends baseReposytory_1.BaseRepository {
     getValidUser(body) {
         return this.model.findOne({ email: body.email, password: jwt.encode(body.password, configs_1.default.secret) });
     }
+    checkIfEmailExists(body) {
+        return this.model.findOne({ email: body.email });
+    }
+    create(body) {
+        body.password = jwt.encode(body.password, configs_1.default.secret);
+        return this.model.create(body);
+    }
 }
 exports.default = new UserRepository;

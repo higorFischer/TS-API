@@ -22,6 +22,37 @@ class UserController extends BaseController<IUser> {
 			.catch(err => sendReponse(res, httpStatus.INTERNAL_SERVER_ERROR, err))
 	}
 
+	public create(req: Request, res: Response){
+		this.CheckValidUser(req.body)
+			.then(exists => {
+				if(exists)
+					sendReponse(res, httpStatus.INTERNAL_SERVER_ERROR, "This email is already been used")
+				else
+					this.createValidUser(req, res);
+			})
+			.catch();
+	}
+
+	private createValidUser(req: Request, res: Response){
+		UserRepository
+			.create(req.body)
+			.then(menus => sendReponse(res, httpStatus.CREATED, menus))
+			.catch(err => sendReponse(res, httpStatus.INTERNAL_SERVER_ERROR, err))
+	}
+
+	private CheckValidUser(body: IUser): Promise<boolean>{
+		return new Promise( (resolve) => {
+			UserRepository
+				.checkIfEmailExists(body)
+				.then(exists => {
+					if(exists)
+						resolve(true);
+					else
+						resolve(false);
+				});
+		});
+	}
+
 	private jwtSign(data){ return jwt.sign(data, configs.secret, { expiresIn: 86400 }); }
 
 }

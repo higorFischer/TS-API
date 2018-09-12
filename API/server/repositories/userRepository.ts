@@ -14,6 +14,14 @@ class UserRepository extends BaseRepository<IUser>{
 		return this.model.findOne({email: body.email, password: jwt.encode(body.password, configs.secret)}); 
 	}
 
+	public checkIfEmailExists(body: IUser){
+		return this.model.findOne({email: body.email}); 
+	}
+
+	public create(body: IUser){
+		body.password = jwt.encode(body.password, configs.secret);
+		return this.model.create(body);
+	}
 
 }
 

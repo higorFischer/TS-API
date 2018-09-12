@@ -1,13 +1,6 @@
-import { Schema }from 'mongoose';
+import { BaseSchema, extendSchema } from '../abstract/schema/baseSchema';
 
-export var UserSchema = new Schema({
-	name: { 
-		type: String,
-		required: true,
-		uppercase: true,
-		minlength: 3,
-		maxlength: 200,
-	},
+export var UserSchema = extendSchema(BaseSchema, {
 	birth: { 
 		type: Date,
 		required: true
@@ -20,12 +13,5 @@ export var UserSchema = new Schema({
 		type: String,
 		required: true,
 		minlength: 8,
-	},
-	createdAt: Date
+	}
 });
-
-UserSchema.pre("save", function(next) {
-	if(!this.createdAt)
-		this.createdAt = new Date();
-	next();
-})

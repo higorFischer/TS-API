@@ -1,4 +1,3 @@
-import { Document } from 'mongoose';
 import { IBaseModel } from '../abstract/interfaces/IBaseModel';
 
 export interface IUser extends IBaseModel{

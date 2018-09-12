@@ -16,6 +16,34 @@ class UserController extends baseController_1.BaseController {
             .then(user => sendReponse(res, httpStatus.OK, this.jwtSign({ email: user.email })))
             .catch(err => sendReponse(res, httpStatus.INTERNAL_SERVER_ERROR, err));
     }
+    create(req, res) {
+        this.CheckValidUser(req.body)
+            .then(exists => {
+            if (exists)
+                sendReponse(res, httpStatus.INTERNAL_SERVER_ERROR, "This email is already been used");
+            else
+                this.createValidUser(req, res);
+        })
+            .catch();
+    }
+    createValidUser(req, res) {
+        userRepository_1.default
+            .create(req.body)
+            .then(menus => sendReponse(res, httpStatus.CREATED, menus))
+            .catch(err => sendReponse(res, httpStatus.INTERNAL_SERVER_ERROR, err));
+    }
+    CheckValidUser(body) {
+        return new Promise((resolve) => {
+            userRepository_1.default
+                .checkIfEmailExists(body)
+                .then(exists => {
+                if (exists)
+                    resolve(true);
+                else
+                    resolve(false);
+            });
+        });
+    }
     jwtSign(data) { return jwt.sign(data, configs_1.default.secret, { expiresIn: 86400 }); }
 }
 exports.default = new UserController();

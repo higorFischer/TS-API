@@ -1,14 +1,7 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-const mongoose_1 = require("mongoose");
-exports.UserSchema = new mongoose_1.Schema({
-    name: {
-        type: String,
-        required: true,
-        uppercase: true,
-        minlength: 3,
-        maxlength: 200,
-    },
+const baseSchema_1 = require("../abstract/schema/baseSchema");
+exports.UserSchema = baseSchema_1.extendSchema(baseSchema_1.BaseSchema, {
     birth: {
         type: Date,
         required: true
@@ -21,11 +14,5 @@ exports.UserSchema = new mongoose_1.Schema({
         type: String,
         required: true,
         minlength: 8,
-    },
-    createdAt: Date
-});
-exports.UserSchema.pre("save", function (next) {
-    if (!this.createdAt)
-        this.createdAt = new Date();
-    next();
+    }
 });
