@@ -1,14 +1,12 @@
 import * as express from "express";
 import * as morgan from "morgan";
 import * as bodyParser from "body-parser";
-import DataBase from '../config/db';
+import DataBase from '../config/MongoDB';
 import * as cors from "cors";
 import uploads from "../config/uploads";
 import Auth from "../config/auth";
 
-import UserController from '../controllers/userController';
 import { IBaseController } from "../abstract/interfaces/IBaseController";
-import { IUser } from "../interfaces/IUser";
 
 
 export class BaseApp{

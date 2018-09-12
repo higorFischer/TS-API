@@ -5,5 +5,4 @@ export interface IUser extends IBaseModel{
 	birth: Date;
 	email: string;
 	password: string;
-	date_of_creation: Date;
 }
