@@ -1,6 +1,7 @@
 # TS-API
-Typescript api
+Fast Typescript, MongoDB, Mongoose and Express API with JWT Authentication.
 
+# **Obs:This description below it's old. It is a little bit easier now**
 ## This is a typescript API with base model, controller and Model
 This is a modified API made by YO 
 
